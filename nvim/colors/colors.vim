@@ -1,0 +1,1 @@
+/home/therealinfinite/.cache/wal/colors-wal.vim
