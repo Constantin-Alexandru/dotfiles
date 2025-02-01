@@ -18,7 +18,8 @@ M.install_from_command = function(command, executable)
   if vim.fn.executable(to_check) == 1 then
     return 0
   end
-  print("Hello")
+
+  print("Installing " .. to_check .. "...")
 
   local obj = vim.system(command, {}):wait()
 
