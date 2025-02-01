@@ -5,7 +5,7 @@ function link_config_folder {
   ln -s ~/dotfiles/$1 ~/.config/$1
 }
 
-total_steps=6
+total_steps=7
 step=0
 
 echo "[$step/$total_steps]Beginning environment setup..."
@@ -60,3 +60,9 @@ echo "[$step/$total_steps]Installing neovim..."
 sudo pacman --noconfirm -Syu neovim
 
 link_config_folder "nvim"
+
+echo "[$step/$total_steps]Installing zathura..."
+
+sudo pacman --noconfirm -Syu zathura zathura-pdf-mupdf
+
+link_config_folder "zathura"
