@@ -50,7 +50,10 @@ return {
               checkFrequency = "save",
 
             }
-          }
+          },
+          on_attach = function(_, bufnr)
+            require("ltex-utils").on_attach(bufnr)
+          end
         }
       end
 
