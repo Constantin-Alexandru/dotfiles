@@ -5,7 +5,7 @@ function link_config_folder {
   ln -s ~/dotfiles/$1 ~/.config/$1
 }
 
-total_steps=8
+total_steps=10
 step=0
 
 echo "[$step/$total_steps]Beginning environment setup..."
@@ -14,9 +14,17 @@ step=$((step + 1))
 
 sleep 3
 
-echo "[$step/$total_steps]Installing prerequisite..."
+echo "[$step/$total_steps]Installing prerequisites..."
 
 sudo pacman --noconfirm -Syu git base-devel
+
+step=$((step + 1)) 
+
+echo "[$step/$total_steps]Installing SDDM..."
+
+sudo pacman --noconfirm -Syu sddm
+
+sudo systemctl enable sddm.service
 
 step=$((step + 1)) 
 
@@ -32,9 +40,9 @@ link_config_folder "kitty"
 
 step=$((step + 1)) 
 
-echo "[$step/$total_steps]Installing the font..."
+echo "[$step/$total_steps]Installing the fonts..."
 
-sudo pacman --noconfirm -Syu ttf-jetbrains-mono-nerd
+sudo pacman --noconfirm -Syu ttf-jetbrains-mono-nerd noto-fonts-emoji
 
 step=$((step + 1)) 
 
@@ -81,3 +89,17 @@ sudo pacman --noconfirm -Syu zathura zathura-pdf-mupdf
 link_config_folder "zathura"
 
 step=$((step + 1)) 
+
+echo "[$step/$total_steps] Installing tofi..."
+
+yay --noconfirm -Syu tofi
+
+step=$((step + 1)) 
+
+echo "[$step/$total_steps] Installing hyprpaper..."
+
+sudo pacman --noconfirm -Syu hyprpaper
+
+echo "$step/$total_steps] Installing clipman..."
+
+sudo pacman --noconfirm -Syu clipman
