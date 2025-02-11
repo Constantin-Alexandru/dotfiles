@@ -9,8 +9,11 @@ return {
       -- CHECK FOR LSPS AND INSTALL
 
       local install_from_command = require "helpers.os".install_from_command
+
       local lua_ls_installed = install_from_command({ "sudo", "pacman", "--noconfirm", "-Syu", "lua-language-server" })
       local ltex_ls_installed = install_from_command({ "yay", "--noconfirm", "-Syu", "ltex-ls-bin" }, "ltex-ls")
+      local clangd_installed = install_from_command({ "yay", "--noconfirm", "-Syu", "clang" }, "clangd")
+      local cmake_ls_installed = install_from_command({ "pipx", "install", "cmake-language-server" })
 
       -- AUTOCOMPLETE SETUP
 
@@ -56,6 +59,19 @@ return {
           end
         }
       end
+
+      if clangd_installed then
+        require "lspconfig".clangd.setup {
+          capabilities = capabilities
+        }
+      end
+
+      if cmake_ls_installed then
+        require "lspconfig".cmake.setup {
+          capabilities = capabilities
+        }
+      end
+
 
       local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
       for type, icon in pairs(signs) do
