@@ -14,3 +14,4 @@
 local install_from_command = require "helpers.os".install_from_command
 
 install_from_command({ "sudo", "pacman", "--noconfirm", "-Syu", "fzf" })
+install_from_command({ "sudo", "pacman", "--noconfirm", "-Syu", "lazygit" })
